@@ -23,16 +23,50 @@ repositories {
 	jcenter()
 }
 
+configurations {
+	// dependency configuration for intTest task (task is added by dropwizard plugin)
+	intTestCompile
+
+	// dependency configuration for accTest task (task is added by dropwizard plugin)
+	accTestCompile
+}
+
 dependencies {
 	// dropwizard
 	compile 'io.dropwizard:dropwizard-core:0.7.1'
 
 	// for the dummy servlet, version banner, ...
 	compile 'net.swisstech:dropwizard-utils:+'
+
+	// unit tests
+	testCompile 'org.testng:testng:+'
+
+	// integration testing
+	intTestCompile 'org.testng:testng:+'
+	intTestCompile 'commons-io:commons-io:+'
+	intTestCompile 'net.swisstech:swissarmyknife:+'
+
+	// acceptance testing
+	accTestCompile 'org.testng:testng:+'
+	accTestCompile 'commons-io:commons-io:+'
+	accTestCompile 'net.swisstech:swissarmyknife:+'
 }
 
 apply plugin: 'net.swisstech.dropwizard'
 dropwizard {
-	mainClass            = 'net.swisstech.dropwizardsample.Main'
-	dropwizardConfigFile = 'development.yml'
+	// your implementation of the dropwizard application class
+	mainClass               = 'net.swisstech.dropwizardsample.Main'
+
+	// the config file to use when running the server manually or as part of the tests
+	dropwizardConfigFile    = 'development.yml'
+
+	// name of the integration tests task, note the matching 'configuration' above.
+	// the tasks are only added when the value is set, if it remains null (the default)
+	// this task will not be added and/or callable
+	integrationTestTaskName = "intTest"
+
+	// name of the acceptance tests task, note the matching 'configuration' above.
+	// the tasks are only added when the value is set, if it remains null (the default)
+	// this task will not be added and/or callable
+	acceptanceTestTaskName  = "accTest"
 }
