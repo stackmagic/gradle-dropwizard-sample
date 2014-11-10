@@ -1,0 +1,34 @@
+
+buildscript {
+	repositories {
+		mavenLocal()
+		jcenter()
+	}
+	dependencies {
+		classpath 'net.swisstech:gradle-dropwizard:+'
+		classpath 'net.swisstech:gradle-eclipseenhancer:+'
+	}
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+	// dropwizard
+	'io.dropwizard:dropwizard-core:0.7.1'
+
+	// for the dummy servlet, version banner, ...
+	'net.swisstech:dropwizard-utils:+'
+}
+
+apply plugin: 'java'
+apply plugin: 'net.swisstech.eclipseenhancer'
+
+apply plugin: 'dropwizard'
+dropwizard {
+	mainClass            = 'net.swisstech.dropwizardsample.Main'
+	dropwizardConfigFile = 'development.yml'
+}
