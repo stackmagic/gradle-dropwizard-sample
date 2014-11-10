@@ -1,4 +1,11 @@
 
+apply plugin: 'java'
+apply plugin: 'net.swisstech.eclipseenhancer'
+
+description = 'Sample project that uses the dropwizard plugin'
+group       = 'net.swisstech'
+version     = '0.4.2'
+
 buildscript {
 	repositories {
 		mavenLocal()
@@ -18,16 +25,13 @@ repositories {
 
 dependencies {
 	// dropwizard
-	'io.dropwizard:dropwizard-core:0.7.1'
+	compile 'io.dropwizard:dropwizard-core:0.7.1'
 
 	// for the dummy servlet, version banner, ...
-	'net.swisstech:dropwizard-utils:+'
+	compile 'net.swisstech:dropwizard-utils:+'
 }
 
-apply plugin: 'java'
-apply plugin: 'net.swisstech.eclipseenhancer'
-
-apply plugin: 'dropwizard'
+apply plugin: 'net.swisstech.dropwizard'
 dropwizard {
 	mainClass            = 'net.swisstech.dropwizardsample.Main'
 	dropwizardConfigFile = 'development.yml'
