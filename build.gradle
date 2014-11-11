@@ -45,17 +45,19 @@ dependencies {
 	intTestCompile 'org.testng:testng:+'
 	intTestCompile 'commons-io:commons-io:+'
 	intTestCompile 'net.swisstech:swissarmyknife:+'
+	intTestCompile 'net.swisstech:dropwizard-utils:+'
 
 	// acceptance testing
 	accTestCompile 'org.testng:testng:+'
 	accTestCompile 'commons-io:commons-io:+'
 	accTestCompile 'net.swisstech:swissarmyknife:+'
+	accTestCompile 'net.swisstech:dropwizard-utils:+'
 }
 
 apply plugin: 'net.swisstech.dropwizard'
 dropwizard {
 	// your implementation of the dropwizard application class
-	mainClass               = 'net.swisstech.dropwizardsample.Main'
+	mainClass               = 'net.swisstech.dropwizardsample.DwApplication'
 
 	// the config file to use when running the server manually or as part of the tests
 	dropwizardConfigFile    = 'development.yml'

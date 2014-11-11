@@ -8,10 +8,11 @@ import net.swisstech.dropwizard.util.DummyResourceBundle;
 import net.swisstech.dropwizard.util.NullConfig;
 import net.swisstech.dropwizard.util.VersionBundle;
 
-public class Main extends Application<NullConfig> {
+/** main dropwizard application class. this example only adds a few bare essentials such as the version banner and a dummy resource and health check. */
+public class DwApplication extends Application<NullConfig> {
 
 	public static void main(String[] args) throws Exception {
-		new Main().run(args);
+		new DwApplication().run(args);
 	}
 
 	@Override
@@ -21,11 +22,11 @@ public class Main extends Application<NullConfig> {
 
 	@Override
 	public void initialize(Bootstrap<NullConfig> bootstrap) {
-		// DO NOT TOUCH: version banner required for int/acc tests
+		// version banner. you could use this on your servers to check for the new version being up and running after a deployment. once it's running, take the
+		// acceptance jar and run these against the freshly deployed instance to verify it's working properly
 		bootstrap.addBundle(new VersionBundle());
 
-		// dummies when an app has neither of these (yet!)
-		// remove these when adding the real thing!
+		// dummies when an app has neither of these (yet!) remove these when adding the real thing!
 		bootstrap.addBundle(new DummyResourceBundle());
 		bootstrap.addBundle(new DummyHealthCheckBundle());
 	}
