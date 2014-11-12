@@ -71,4 +71,11 @@ dropwizard {
 	// the tasks are only added when the value is set, if it remains null (the default)
 	// this task will not be added and/or callable
 	acceptanceTestTaskName  = "accTest"
+
+	// list of jvmArgs to be added, same semantics as JavaExec.jvmArgs(), put your args
+	// including '-D' and everything there
+	// added in dropwizard-gradle 1.1.6
+	jvmArgs                 = [
+		  "-DSERVER_VERSION=${project.version}"
+	]
 }
